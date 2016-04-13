@@ -41,3 +41,6 @@ function tfind { find . -name "$1" ; }
 function tfindin { find "$1" -name "$2" ; }
 
 alias stripws="perl -p -i -e 's/[\t\f ]+$//'"
+
+alias ipy="dcr app bash -c 'pip install ipython; ipython'"
+alias ipyc="dcr app bash -c 'pip install ipython; ipython -i scripts/console.py'"

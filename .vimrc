@@ -13,6 +13,8 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'mkitt/tabline.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jdonaldson/vaxe'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end() 
 
@@ -78,3 +80,4 @@ nnoremap <leader><S-n> :call NumberOff()<cr>
 
 " S will replace the word under the cursor with the yanked buffer
 nnoremap S diw"0P
+nnoremap <leader>a :tabnew <bar> :Ack<Space>
