@@ -33,7 +33,7 @@ alias dctd='docker-compose run --rm app python ./runtests.py -vx --pdb --pdb-fai
 alias dcrb='docker-compose run --rm app make dev'
 alias dcc='docker-compose run --rm app python -i scripts/console.py'
 
-alias ugh='npm install ; rm -rf static/dev ; grunt build:dev ; grunt watch'
+alias ugh='npm install ; rm -rf static/dev ; grunt build:dev ; touch locals.py ;grunt watch'
 
 function tgrep { grep -rnIi "$1" . --color ; }
 function tgrepin { grep -rnIi "$2" $1 --color ; }
@@ -41,6 +41,4 @@ function tfind { find . -name "$1" ; }
 function tfindin { find "$1" -name "$2" ; }
 
 alias stripws="perl -p -i -e 's/[\t\f ]+$//'"
-
-alias ipy="dcr app bash -c 'pip install ipython; ipython'"
-alias ipyc="dcr app bash -c 'pip install ipython; ipython -i scripts/console.py'"
+alias cleanup="git branch | grep -v 'master' | xargs git branch -D"

@@ -80,4 +80,7 @@ nnoremap <leader><S-n> :call NumberOff()<cr>
 
 " S will replace the word under the cursor with the yanked buffer
 nnoremap S diw"0P
-nnoremap <leader>a :tabnew <bar> :Ack<Space>
+nnoremap <leader>a :Ack<Space>
+nnoremap <leader>A :tabnew <bar> :Ack<Space>
+nnoremap <leader>s :split<Space>
+nnoremap <leader>v :vsplit<Space>
