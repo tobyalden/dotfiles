@@ -6,15 +6,19 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'mkitt/tabline.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jdonaldson/vaxe'
 Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-lua-ftplugin'
+Plugin 'tpope/vim-abolish'
+Plugin 'rust-lang/rust.vim'
+Plugin 'ziglang/zig.vim'
+
+"let g:rustfmt_autosave = 1
+
+set formatoptions-=c formatoptions-=r formatoptions-=o
 
 call vundle#end() 
 
@@ -41,7 +45,6 @@ inoremap <right> <nop>
 
 set relativenumber
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 set laststatus=2
 
 set tabstop=4
@@ -49,7 +52,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set cursorline cursorcolumn
-set colorcolumn=79
+" set colorcolumn=79
 set smartcase
 set noswapfile
 set scrolloff=10
@@ -78,9 +81,20 @@ endfunction
 
 nnoremap <leader><S-n> :call NumberOff()<cr>
 
-" S will replace the word under the cursor with the yanked buffer
-nnoremap S diw"0P
+function! TogglePaste()
+    if(&paste == 0)
+        set paste
+        echo "Paste Mode Enabled"
+    else
+        set nopaste
+        echo "Paste Mode Disabled"
+    endif
+endfunction
+
 nnoremap <leader>a :Ack<Space>
 nnoremap <leader>A :tabnew <bar> :Ack<Space>
 nnoremap <leader>s :split<Space>
 nnoremap <leader>v :vsplit<Space>
+nnoremap <leader>t :tabnew<Space>
+nnoremap <leader>p :call TogglePaste()<cr>
+

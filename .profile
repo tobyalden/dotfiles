@@ -1,16 +1,32 @@
-export GRUNT_USER=root
-export GRUNT_UID=$(id -u)
-export GRUNT_GID=$(id -g)
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
 
-export PATH=${PATH}:/usr/local/opt/gettext/bin
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
 
-if [ `which dinghy` ] ; then
-	$(dinghy shellinit)
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-      . ~/.git-completion.bash
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
 fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+alias mp3="youtube-dl --extract-audio --audio-format mp3"
 
 alias g='git'
 alias gs='git status'
@@ -20,25 +36,8 @@ alias gb='git branch'
 alias gd='git diff'
 alias gl='git log'
 alias gco='git checkout'
-alias gissy='git submodule foreach git pull origin master && git submodule update'
+alias love='../love-11.3-win64/love-11.3-win64/love.exe .'
+alias ccode="cd ../../mnt/c/Users/Underhill/Desktop/GameDev/"
+. "$HOME/.cargo/env"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-alias cdisc='cd ~/Discogs/src/discogs'
-alias cdesk='cd ~/Desktop'
-
-alias dc='docker-compose'
-alias dcr='docker-compose run --rm'
-alias dcu='docker-compose up -d --no-recreate'
-alias dct='docker-compose run --rm app python ./runtests.py -vv'
-alias dctd='docker-compose run --rm app python ./runtests.py -vx --pdb --pdb-fail'
-alias dcrb='docker-compose run --rm app make dev'
-alias dcc='docker-compose run --rm app python -i scripts/console.py'
-
-alias ugh='npm install ; rm -rf static/dev ; grunt build:dev ; touch locals.py ;grunt watch'
-
-function tgrep { grep -rnIi "$1" . --color ; }
-function tgrepin { grep -rnIi "$2" $1 --color ; }
-function tfind { find . -name "$1" ; }
-function tfindin { find "$1" -name "$2" ; }
-
-alias stripws="perl -p -i -e 's/[\t\f ]+$//'"
-alias cleanup="git branch | grep -v 'master' | xargs git branch -D"
